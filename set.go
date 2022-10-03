@@ -314,9 +314,12 @@ func (s *Set) SUnion(keys ...string) (val []interface{}) {
 		}
 	}
 
-	un := union(m[0], m[1], m[2:]...)
-	for k := range un {
-		val = append(val, k)
+	if len(m) >= 2 {
+		un := union(m[0], m[1], m[2:]...)
+		for k := range un {
+			val = append(val, k)
+		}
+
 	}
 
 	return
@@ -348,9 +351,11 @@ func (s *Set) SDiff(keys ...string) (val []interface{}) {
 		}
 	}
 
-	diff := difference(m[0], m[1], m[2:]...)
-	for k := range diff {
-		val = append(val, k)
+	if len(m) >= 2 {
+		diff := difference(m[0], m[1], m[2:]...)
+		for k := range diff {
+			val = append(val, k)
+		}
 	}
 
 	return
